@@ -59,6 +59,35 @@ public class Main extends Application {
         }
     }
 
+    /**
+     * Revisa el mensaje para determinar que nos es vacío.
+     * @param message string con el mensaje
+     * @return true o false
+     */
+    public boolean checkMessage (String message){
+        if(message != ""){
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Revisa la ip para determinar si cumple con los requerimientos
+     * @param ip ip ingresada por el cliente
+     * @return true o false
+     */
+    public boolean checkip (String ip){
+        if(ip.equals("")){
+            return true;
+        }else {
+            int length = ip.length();
+            if ((length == 9)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         //new SocketHosting();
