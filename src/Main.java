@@ -33,6 +33,32 @@ public class Main extends Application {
     ChatServer server;
     ChatClient client;
 
+    /**
+     * Determina que los parametros escritos por el cliente sean correctos y crea un objeto Sockets.ChatClient que creará una conexión con otro servidor.
+     * @param ip
+     * @param port
+     * @param message
+     * @throws UnknownHostException
+     */
+    public void send(String ip, String port, String message)throws UnknownHostException {
+        boolean Bport = checkPort(port);
+        boolean Bmessage = checkMessage(message);
+        boolean Bip = checkip(ip);
+
+        if((Bport) && (Bmessage) && (Bip)){
+            int intPort = Integer.parseInt(port);
+            if(ip.equals("")){
+                client = new ChatClient("", intPort, message);
+            }else {
+                client = new ChatClient(ip, intPort, message);
+            }
+        }
+        else{
+            System.out.println("Debe llenar los espacios de mensaje y servidor obligatoriamente. Si desea utilizar la " +
+                    "ip local puede dejar el espacio en blanco");
+        }
+    }
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         //new SocketHosting();
