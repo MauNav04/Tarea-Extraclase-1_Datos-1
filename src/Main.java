@@ -33,6 +33,27 @@ public class Main extends Application {
     ChatServer server;
     ChatClient client;
 
+    public class SocketHosting implements Runnable {
+        Thread t;
+        SocketHosting() {
+            t = new Thread(this, "Thread");
+            t.start();
+        }
+
+        public void run(){
+
+            Scanner scan = new Scanner(System.in);
+
+            System.out.print("Select a port to host the app : ");
+            String output = scan.nextLine();
+            int port = Integer.parseInt(output);
+
+            hostingPort = port ;
+            server = new ChatServer(port);
+        }
+
+    }
+
     /**
      * Determina que los parametros escritos por el cliente sean correctos y crea un objeto Sockets.ChatClient que creará una conexión con otro servidor.
      * @param ip
@@ -105,7 +126,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        //new SocketHosting();
+        new SocketHosting();
 
         primaryStage.setTitle("Socket Chat");
         primaryStage.setWidth(800);
