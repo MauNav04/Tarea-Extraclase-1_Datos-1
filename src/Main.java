@@ -60,6 +60,21 @@ public class Main extends Application {
     }
 
     /**
+     * Revisa el puerto para deterinar que no es vacío y que cumple con el largo establecido.
+     * @param port escrito por el cliente
+     * @return true o false
+     */
+    public boolean checkPort (String port){
+        if(port != ""){
+            int length = port.length();
+            if(length < 5){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * Revisa el mensaje para determinar que nos es vacío.
      * @param message string con el mensaje
      * @return true o false
